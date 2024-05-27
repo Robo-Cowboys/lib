@@ -5,7 +5,7 @@
       justfile = ''
         # Rebuild the system using `nh os boot`
         boot:
-          nix flake update robo-nyx
+          nix flake update robo-nix-lib
           nh os boot
       '';
     };
