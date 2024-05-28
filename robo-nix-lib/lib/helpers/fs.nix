@@ -1,6 +1,4 @@
-{self, ...}: let
-  inherit (self) globals;
-in {
+{src, ...}: {
   fs = rec {
     ## Matchers for file kinds. These are often used with `readDir`.
     ## Example Usage:
@@ -27,10 +25,6 @@ in {
     ## "/user-source/systems"
     ## ```
     #@ Path -> Path
-    get-file = path: "${globals.flakeRoot}/${path}";
+    get-file = path: "${src}/${path}";
   };
-
-  getSecretFile = file: "${globals.flakeRoot}/secrets/${file}";
-  #  getSSHKeyFiles = user:
-  #    fs.get-files (fs.get-file "keys/${user}/ssh");
 }

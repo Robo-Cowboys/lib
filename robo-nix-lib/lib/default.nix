@@ -1,4 +1,4 @@
-{inputs, ...}: let
+{inputs, lib, src, ...}: let
   inherit (inputs.nixpkgs) lib;
   inherit (lib) foldl recursiveUpdate;
   inherit (import ./common.nix {inherit lib;}) import';
@@ -7,7 +7,7 @@
   builders = import' ./builders.nix {inherit inputs;}; # system builders
   services = import' ./services.nix; # systemd-service generators
   validators = import' ./validators.nix; # validate system conditions
-  helpers = import' ./helpers; # helper functions
+  helpers = import' ./helpers {inherit lib src;}; # helper functions
   hardware = import' ./hardware.nix; # hardware capability checks
   #  xdg = import' ./xdg; # xdg user directories & templates
 
